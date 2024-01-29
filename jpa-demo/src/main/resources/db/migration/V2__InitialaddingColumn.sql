@@ -1,0 +1,1 @@
+alter table cars add color CHARACTER VARYING;
