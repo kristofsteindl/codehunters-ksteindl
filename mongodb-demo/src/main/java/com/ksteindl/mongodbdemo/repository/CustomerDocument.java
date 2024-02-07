@@ -1,6 +1,7 @@
 package com.ksteindl.mongodbdemo.repository;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -9,17 +10,14 @@ import java.util.Objects;
 public class CustomerDocument {
 
     @Id
-    public String id;
-
-    public String firstName;
-    public String lastName;
-
+    private String id;
+    private String firstName;
+    private String lastName;
+    @Indexed(unique = true)
+    private String username;
+    private String password;
+    
     public CustomerDocument() {}
-
-    public CustomerDocument(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     @Override
     public String toString() {
@@ -32,19 +30,55 @@ public class CustomerDocument {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         CustomerDocument that = (CustomerDocument) o;
-
-        if (!Objects.equals(id, that.id)) return false;
-        if (!Objects.equals(firstName, that.firstName)) return false;
-        return Objects.equals(lastName, that.lastName);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
