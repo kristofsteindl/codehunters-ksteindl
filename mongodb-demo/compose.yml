@@ -1,0 +1,10 @@
+services:
+  mongodb-demo:
+    restart: always
+    build: .
+    container_name: mongodb-demo
+    ports:
+      - "9000:8080"
+
+
+
