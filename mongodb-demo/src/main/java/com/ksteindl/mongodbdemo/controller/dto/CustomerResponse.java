@@ -1,6 +1,5 @@
 package com.ksteindl.mongodbdemo.controller.dto;
 
-import com.ksteindl.mongodbdemo.service.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerResponse {
-    
-    private Customer customer;
+
+    private String id;
     
 }

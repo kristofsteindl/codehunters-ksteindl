@@ -1,6 +1,5 @@
 package com.ksteindl.mongodbdemo.service;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -18,8 +17,8 @@ public class Customer implements UserDetails {
     private String firstName;
     private String lastName;
     @NotNull
+    @Indexed(unique = true)
     private String username;
-    @JsonIgnore
     @NotNull
     private String password;
 

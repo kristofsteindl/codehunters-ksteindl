@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/registration")
 public class RegistrationRestController {
     
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     public RegistrationRestController(CustomerService customerService) {
         this.customerService = customerService;
@@ -25,7 +25,7 @@ public class RegistrationRestController {
     @PostMapping
     public ResponseEntity<CustomerResponse> saveCustomer(@Valid @RequestBody CustomerRequest customerRequest) {
         Customer savedCustomer = customerService.saveCustomer(customerRequest.getCustomer());
-        CustomerResponse customerResponse = new CustomerResponse(savedCustomer);
+        CustomerResponse customerResponse = new CustomerResponse(savedCustomer.getId());
         return ResponseEntity.status(201).body(customerResponse);
     }
     

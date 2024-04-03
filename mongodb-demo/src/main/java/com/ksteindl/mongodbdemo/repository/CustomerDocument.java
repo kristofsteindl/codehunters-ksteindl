@@ -19,6 +19,11 @@ public class CustomerDocument {
     
     public CustomerDocument() {}
 
+    public CustomerDocument(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return String.format(
