@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/v1/login/**").permitAll()
                         .requestMatchers("/v1/registration/**").permitAll()
+                        .requestMatchers("/v1/eureka/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtHttpFilter, UsernamePasswordAuthenticationFilter.class)

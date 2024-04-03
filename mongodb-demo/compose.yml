@@ -1,10 +1,38 @@
 services:
-  mongodb-demo:
+  user-service:
     restart: always
-    build: .
-    container_name: mongodb-demo
+    build: ./user-service
+    depends_on:
+      - service-discovery
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     ports:
       - "9000:8080"
+    networks: 
+      - spring-cloud-demo
+  
+  service-discovery:
+    restart: always
+    build: ./service-discovery
+    ports:
+      - "9001:8080"
+    networks:
+      - spring-cloud-demo
+
+  gateway-service:
+    restart: always
+    build: ./gateway-service
+    depends_on:
+      - user-service
+      - service-discovery
+    ports:
+      - "9002:8080"
+    networks:
+      - spring-cloud-demo
+      
+networks: 
+  spring-cloud-demo: {}
 
 
 

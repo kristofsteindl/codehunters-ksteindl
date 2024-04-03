@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: userService
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/v1/**
+          filters:
+            - AddRequestHeader=X-Client,CodeHuntersLocal
+            - name: Retry
+              args:
+                retries: 3
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
+#            - name: CircuitBreaker
+#              args:
+#                name: userService
+#                fallbackUri: forward:/userFallback #to an internal controller or handler within the gateway app
+#        - id: configServer
+#          uri: lb://CONFIG-SERVER
+#          predicates:
+#            - Path=/config/**
+#          filters:
+#            - RewritePath=/config/(?<segment>.*),/$\{segment}
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://service-discovery:8080/eureka/
+
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      userService:
+#        slidingWindowSize: 10                     #unit request
+#        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+#        failureRateThreshold: 50                  #percent
+#        waitDurationInOpenState: 10000            #10 seconds
+#        registerHealthIndicator: true
+#  timelimiter:
+#    instances:
+#      userService:
+#        timeoutDuration: 2s
