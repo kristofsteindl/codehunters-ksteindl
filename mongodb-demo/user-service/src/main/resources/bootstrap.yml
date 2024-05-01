@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    enabled: true
+    config:
+      uri: http://gateway-service:8080/config
+      failFast: true
+      retry:
+        maxAttempts: 20

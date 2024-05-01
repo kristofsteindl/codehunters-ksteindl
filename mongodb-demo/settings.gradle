@@ -3,3 +3,4 @@ rootProject.name = 'mongodb-demo'
 include('user-service')
 include('service-discovery')
 include('gateway-service')
+include('external-configuration-service')

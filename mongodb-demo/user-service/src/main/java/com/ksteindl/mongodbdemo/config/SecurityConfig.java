@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/v1/login/**").permitAll()
+                        .requestMatchers("/v1/dummy/**").permitAll()
                         .requestMatchers("/v1/registration/**").permitAll()
                         .requestMatchers("/v1/eureka/**").permitAll()
                         .anyRequest().authenticated()

@@ -42,6 +42,7 @@ dependencies {
 	
 	implementation 'org.projectlombok:lombok:1.18.30'
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

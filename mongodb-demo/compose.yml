@@ -30,7 +30,19 @@ services:
       - "9002:8080"
     networks:
       - spring-cloud-demo
-      
+  
+  external-configuration-service:
+#    restart: always
+    build: ./external-configuration-service
+    container_name: config_server
+    volumes:
+      - "/home/ksteindl/.ssh(copy):/root/.ssh"
+    networks:
+      - spring-cloud-demo
+    ports:
+      - "9003:8080"
+    depends_on:
+      - service-discovery
 networks: 
   spring-cloud-demo: {}
 

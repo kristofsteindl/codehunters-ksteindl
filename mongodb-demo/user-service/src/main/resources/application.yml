@@ -4,6 +4,8 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.r3k2ajp.mongodb.net/kdb?retryWrites=true&w=majority
+  config:
+    import: "optional:configserver:http://gateway-service:8080/config"
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration,org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
 jwt:
