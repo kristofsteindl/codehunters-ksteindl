@@ -7,16 +7,17 @@ spring:
         - id: userService
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/v1/**
-          filters:
-            - AddRequestHeader=X-Client,CodeHuntersLocal
-            - name: Retry
-              args:
-                retries: 3
-                methods: GET,POST
-                backoff:
-                  firstBackoff: 50ms
-                  maxBackoff: 500ms
+            - Path=/**
+            - Method=GET,POST
+          # filters:
+          #   - AddRequestHeader=X-Client,CodeHuntersLocal
+          #   - name: Retry
+          #     args:
+          #       retries: 3
+          #       methods: GET,POST
+          #       backoff:
+          #         firstBackoff: 50ms
+          #         maxBackoff: 500ms
 #            - name: CircuitBreaker
 #              args:
 #                name: userService
